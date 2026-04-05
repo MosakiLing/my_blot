@@ -508,6 +508,6 @@ onMounted(fetchArticles)
 .search-bar,
 .tags-bar,
 .article-list {
-  max-width: 700px;
+  width: 700px;
 }
 </style>

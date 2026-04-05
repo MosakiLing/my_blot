@@ -12,11 +12,8 @@
     "lint:eslint": "eslint . --fix --cache"
   },
   "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
     "highlight.js": "^11.11.1",
     "markdown-it": "^14.1.1",
-    "multer": "^2.1.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.30",
     "vue-router": "^5.0.3"
