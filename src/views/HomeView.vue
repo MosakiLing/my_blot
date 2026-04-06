@@ -159,7 +159,7 @@ const submitPost = async () => {
   // 校验...
   isSubmitting.value = true
   try {
-    const response = await fetch('${API_BASE_URL}/api/save-post', {
+    const response = await fetch(`${API_BASE_URL}/api/save-post`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

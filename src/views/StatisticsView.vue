@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import * as echarts from 'echarts'
 import { parseFrontmatter } from '@/utils/markdown'
 
@@ -64,43 +64,49 @@ const fetchStatistics = async () => {
     const sortedMonths = Object.keys(monthCount).sort()
     const barData = sortedMonths.map(month => monthCount[month])
 
+    // 先关闭 loading，让图表容器渲染出来
+    loading.value = false
+    await nextTick()  // 等待 DOM 更新
+
     // 渲染饼图
-    const pieChart = echarts.init(pieChartRef.value)
-    pieChart.setOption({
-      tooltip: { trigger: 'item' },
-      legend: { bottom: 5 },
-      series: [{
-        type: 'pie',
-        radius: '50%',
-        data: pieData,
-        emphasis: { scale: true },
-        label: { show: true, formatter: '{b}: {d}%', avoidLabelOverlap: true}
-      }]
-    })
+    if (pieChartRef.value) {
+      const pieChart = echarts.init(pieChartRef.value)
+      pieChart.setOption({
+        tooltip: { trigger: 'item' },
+        legend: { bottom: 5 },
+        series: [{
+          type: 'pie',
+          radius: '50%',
+          data: pieData,
+          emphasis: { scale: true },
+          label: { show: true, formatter: '{b}: {d}%', avoidLabelOverlap: true }
+        }]
+      })
+    }
 
     // 渲染柱状图
-    const barChart = echarts.init(barChartRef.value)
-    barChart.setOption({
-      tooltip: { trigger: 'axis' },
-      xAxis: { type: 'category', data: sortedMonths, name: '月份' },
-      yAxis: { type: 'value', name: '文章数量' },
-      series: [{
-        type: 'bar',
-        data: barData,
-        itemStyle: { color: '#42b983', borderRadius: [4,4,0,0] },
-        barWidth: '30%',
-        label: {
-          show: true,
-          position: 'top',
-          formatter: '{c} 篇'
-        }
-      }]
-    })
+    if (barChartRef.value) {
+      const barChart = echarts.init(barChartRef.value)
+      barChart.setOption({
+        tooltip: { trigger: 'axis' },
+        xAxis: { type: 'category', data: sortedMonths, name: '月份' },
+        yAxis: { type: 'value', name: '文章数量' },
+        series: [{
+          type: 'bar',
+          data: barData,
+          itemStyle: { color: '#42b983', borderRadius: [4,4,0,0] },
+          barWidth: '30%',
+          label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} 篇'
+          }
+        }]
+      })
+    }
 
   } catch (err) {
     console.error('统计数据加载失败', err)
-  } finally {
-    loading.value = false
   }
 }
 

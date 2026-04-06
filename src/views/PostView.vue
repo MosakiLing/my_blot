@@ -47,7 +47,7 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
 import { parseFrontmatter } from '@/utils/markdown'
 
-const API_BASE_URL = 'https://你的后端域名.up.railway.app'
+const API_BASE_URL = 'https://web-production-b655b.up.railway.app'
 const route = useRoute()
 const router = useRouter()
 const article = ref(null)
