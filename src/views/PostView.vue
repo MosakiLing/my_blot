@@ -108,7 +108,7 @@ const submitEdit = async () => {
         router.push(`/post/${data.new_filename}`)
       } else {
         // 重新加载当前文章
-        await loadArticle()
+        router.go(0)   // 强制刷新当前页面
       }
       isEditing.value = false
     } else {
