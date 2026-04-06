@@ -191,7 +191,7 @@ const submitPost = async () => {
 const fetchArticles = async () => {
   loading.value = true
   try {
-    const res = await fetch('/posts.json')
+    const res = await fetch('${API_BASE_URL}/posts.json')
     if (!res.ok) throw new Error('加载失败')
     
     const fileNames = await res.json()
@@ -199,7 +199,7 @@ const fetchArticles = async () => {
     
     for (const name of fileNames) {
       try {
-        const mdRes = await fetch(`/posts/${name}.md`)
+        const mdRes = await fetch(`${API_BASE_URL}/posts/${name}.md`)
         if (!mdRes.ok) continue
         
         const text = await mdRes.text()
