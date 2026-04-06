@@ -5,7 +5,7 @@
     <!-- 按钮栏：切换撰写表单 -->
     <div class="action-bar">
       <button @click="showWriteForm = !showWriteForm" class="write-btn">
-        {{ showWriteForm ? '← 返回首页' : '📝 撰写文章' }}
+        {{ showWriteForm ? '← 返回首页' : '撰写文章' }}
       </button>
     </div>
 
@@ -16,7 +16,7 @@
       <input v-model="newPost.tags" placeholder="标签（用逗号分隔，如：Vue,前端）" class="form-input" />
       <textarea v-model="newPost.content" placeholder="文章内容（支持 Markdown 语法）" class="form-textarea" rows="12"></textarea>
       <div class="form-buttons">
-        <button @click="submitPost" class="submit-btn">📤 提交文章</button>
+        <button @click="submitPost" class="submit-btn">提交文章</button>
         <button @click="showWriteForm = false" class="cancel-btn">取消</button>
       </div>
       <p class="hint">提示：提交后会自动保存到服务器，刷新首页即可看到新文章。</p>

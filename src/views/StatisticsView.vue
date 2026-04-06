@@ -1,7 +1,8 @@
 <template>
   <div class="statistics">
     <h1>文章数据统计</h1>
-    <div class="charts-container">
+    <div v-if="loading" class="loading">加载中...</div>
+    <div v-else class="charts-container">
       <div class="chart-box">
         <h2>文章标签分布</h2>
         <div ref="pieChartRef" class="chart"></div>
@@ -21,10 +22,12 @@ import { parseFrontmatter } from '@/utils/markdown'
 
 const pieChartRef = ref(null)
 const barChartRef = ref(null)
+const loading = ref(true)
 
 // 获取所有文章数据
 const fetchStatistics = async () => {
   try {
+    loading.value = true
     const res = await fetch('/posts.json')
     const fileNames = await res.json()
     const articles = []
@@ -64,13 +67,13 @@ const fetchStatistics = async () => {
     const pieChart = echarts.init(pieChartRef.value)
     pieChart.setOption({
       tooltip: { trigger: 'item' },
-      legend: { top: 'bottom' },
+      legend: { bottom: 5 },
       series: [{
         type: 'pie',
         radius: '50%',
         data: pieData,
         emphasis: { scale: true },
-        label: { show: true, formatter: '{b}: {d}%' }
+        label: { show: true, formatter: '{b}: {d}%', avoidLabelOverlap: true}
       }]
     })
 
@@ -84,12 +87,19 @@ const fetchStatistics = async () => {
         type: 'bar',
         data: barData,
         itemStyle: { color: '#42b983', borderRadius: [4,4,0,0] },
-        barWidth: '30%'
+        barWidth: '30%',
+        label: {
+          show: true,
+          position: 'top',
+          formatter: '{c} 篇'
+        }
       }]
     })
 
   } catch (err) {
     console.error('统计数据加载失败', err)
+  } finally {
+    loading.value = false
   }
 }
 

@@ -2,8 +2,8 @@
   <div class="post" v-if="article">
     <!-- 操作按钮栏 -->
     <div class="post-actions">
-      <button @click="toggleEditMode" class="edit-btn">✏️ 编辑</button>
-      <button @click="confirmDelete" class="delete-btn">🗑️ 删除</button>
+      <button @click="toggleEditMode" class="edit-btn">编辑</button>
+      <button @click="confirmDelete" class="delete-btn">删除</button>
     </div>
 
     <!-- 编辑模式 -->
@@ -12,7 +12,7 @@
       <input v-model="editForm.tags" placeholder="标签（逗号分隔）" class="form-input" />
       <textarea v-model="editForm.content" placeholder="内容（Markdown）" rows="12" class="form-textarea"></textarea>
       <div class="form-buttons">
-        <button @click="submitEdit" class="save-btn">💾 保存修改</button>
+        <button @click="submitEdit" class="save-btn">保存修改</button>
         <button @click="cancelEdit" class="cancel-btn">取消</button>
       </div>
     </div>
