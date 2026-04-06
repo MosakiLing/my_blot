@@ -169,7 +169,7 @@ const loadArticle = async () => {
     console.log('加载文章:', id)
     
     // 获取 markdown 文件
-    const response = await fetch(`/posts/${id}.md`)
+    const response = await fetch(`${API_BASE_URL}/posts/${id}.md`)
     if (!response.ok) {
       throw new Error(`文章不存在: ${id}`)
     }
