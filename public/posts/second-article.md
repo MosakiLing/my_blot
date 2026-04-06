@@ -1,7 +1,7 @@
 ---
 title: Vue3 入门(组合式API)
 date: 2026-03-31
-tags: Vue, 前端, 入门
+tags: Vue, 前端, 入门, 文章
 ---
 
 # Vue3 组合式API 学习笔记
