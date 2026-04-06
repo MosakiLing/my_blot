@@ -107,6 +107,7 @@ const fetchStatistics = async () => {
 
   } catch (err) {
     console.error('统计数据加载失败', err)
+    loading.value = false
   }
 }
 
