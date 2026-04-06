@@ -7,7 +7,7 @@ import re
 from urllib.parse import unquote
 
 app = Flask(__name__)
-CORS(app, origins='http://localhost:5173', supports_credentials=True)
+CORS(app, origins='*')
 
 #限制请求体大小（防止过大）
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 10MB
@@ -18,6 +18,23 @@ JSON_PATH = os.path.join('public', 'posts.json')
 
 # 确保 posts 文件夹存在
 os.makedirs(POSTS_DIR, exist_ok=True)
+
+@app.route('/posts.json')
+def get_posts_json():
+    if os.path.exists(JSON_PATH):
+        with open(JSON_PATH, 'r', encoding='utf-8') as f:
+            return jsonify(json.load(f))
+    else:
+        return jsonify([])
+
+@app.route('/posts/<filename>.md')
+def get_md_file(filename):
+    file_path = os.path.join(POSTS_DIR, f'{filename}.md')
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return f.read(), 200, {'Content-Type': 'text/markdown'}
+    else:
+        return jsonify({'error': 'Not found'}), 404
 
 def generate_filename(title):
     """将标题转换为合法的文件名（英文+数字+中文）"""

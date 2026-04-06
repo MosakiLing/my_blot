@@ -47,6 +47,7 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
 import { parseFrontmatter } from '@/utils/markdown'
 
+const API_BASE_URL = 'https://你的后端域名.up.railway.app'
 const route = useRoute()
 const router = useRouter()
 const article = ref(null)
@@ -90,7 +91,7 @@ const submitEdit = async () => {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/update-post/${route.params.id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/update-post/${route.params.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -128,7 +129,7 @@ const confirmDelete = () => {
 
 const deleteArticle = async () => {
   try {
-    const response = await fetch(`http://localhost:3000/api/delete-post/${route.params.id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/delete-post/${route.params.id}`, {
       method: 'DELETE'
     })
     const data = await response.json()

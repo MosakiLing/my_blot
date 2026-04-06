@@ -20,6 +20,7 @@ import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import { parseFrontmatter } from '@/utils/markdown'
 
+const API_BASE_URL = 'https://web-production-b655b.up.railway.app'
 const pieChartRef = ref(null)
 const barChartRef = ref(null)
 const loading = ref(true)
@@ -28,12 +29,12 @@ const loading = ref(true)
 const fetchStatistics = async () => {
   try {
     loading.value = true
-    const res = await fetch('/posts.json')
+    const res = await fetch(`${API_BASE_URL}/posts.json`)
     const fileNames = await res.json()
     const articles = []
 
     for (const name of fileNames) {
-      const mdRes = await fetch(`/posts/${name}.md`)
+      const mdRes = await fetch(`${API_BASE_URL}/posts/${name}.md`)
       const text = await mdRes.text()
       const { data } = parseFrontmatter(text)
       articles.push({

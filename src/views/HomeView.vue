@@ -87,6 +87,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { parseFrontmatter, getPlainText } from '@/utils/markdown'
 
+const API_BASE_URL = 'https://web-production-b655b.up.railway.app'
 // ===== 数据 =====
 const articles = ref([])
 const loading = ref(true)
@@ -158,7 +159,7 @@ const submitPost = async () => {
   // 校验...
   isSubmitting.value = true
   try {
-    const response = await fetch('http://localhost:3000/api/save-post', {
+    const response = await fetch('${API_BASE_URL}/api/save-post', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
