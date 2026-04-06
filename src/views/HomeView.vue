@@ -191,7 +191,7 @@ const submitPost = async () => {
 const fetchArticles = async () => {
   loading.value = true
   try {
-    const res = await fetch('${API_BASE_URL}/posts.json')
+    const res = await fetch(`${API_BASE_URL}/posts.json`)
     if (!res.ok) throw new Error('加载失败')
     
     const fileNames = await res.json()
