@@ -87,7 +87,8 @@
 import { ref, onMounted, computed } from 'vue'
 import { parseFrontmatter, getPlainText } from '@/utils/markdown'
 
-const API_BASE_URL = 'https://web-production-b655b.up.railway.app'
+// const API_BASE_URL = 'https://web-production-b655b.up.railway.app'
+const API_BASE_URL = 'http://localhost:3000'
 // ===== 数据 =====
 const articles = ref([])
 const loading = ref(true)
