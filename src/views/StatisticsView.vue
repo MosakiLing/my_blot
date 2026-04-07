@@ -148,7 +148,7 @@ onMounted(() => {
 
 @media (max-width: 640px) {
   .statistics {
-    padding: 0.5rem;
+    padding: 0;
   }
   
   .charts-container {
@@ -162,6 +162,7 @@ onMounted(() => {
     margin: 0;
     padding: 0.75rem;
     box-sizing: border-box;
+    border-radius: 0;
   }
   
   .chart {
@@ -172,6 +173,7 @@ onMounted(() => {
   .statistics h1 {
     font-size: 1.4rem;
     text-align: center;
+    padding: 0 0.5rem;
   }
   
   .chart-box h2 {
