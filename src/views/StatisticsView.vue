@@ -150,9 +150,9 @@ onMounted(() => {
   .charts-container {
     gap: 1rem;
   }
-  
+
   .chart-box {
-    min-width: 100%;
+    min-width: 100% !important;
   }
   
   .chart {

@@ -485,9 +485,9 @@ onMounted(fetchArticles)
   .search-bar,
   .tags-bar,
   .article-list {
-    width: 100%;
+    width: 100% !important;
   }
-  
+
   .article-item {
     padding: 0.875rem;
   }
