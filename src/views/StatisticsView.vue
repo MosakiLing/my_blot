@@ -148,21 +148,7 @@ onMounted(() => {
 
 @media (max-width: 640px) {
   .chart-box {
-    min-width: 100%;
-    width: 100%;
-  }
-  
-  .chart {
     width: 100% !important;
-    height: 280px;
-  }
-  
-  .statistics {
-    padding: 0.5rem;
-  }
-  
-  .charts-container {
-    gap: 1rem;
   }
 }
 </style>
