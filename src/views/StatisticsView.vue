@@ -20,8 +20,8 @@ import { ref, onMounted, nextTick } from 'vue'
 import * as echarts from 'echarts'
 import { parseFrontmatter } from '@/utils/markdown'
 
-// const API_BASE_URL = 'https://web-production-b655b.up.railway.app'
-const API_BASE_URL = 'http://localhost:3000'
+const API_BASE_URL = 'https://web-production-b655b.up.railway.app'
+// const API_BASE_URL = 'http://localhost:3000'
 const pieChartRef = ref(null)
 const barChartRef = ref(null)
 const loading = ref(true)
